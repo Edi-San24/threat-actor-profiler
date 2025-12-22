@@ -1,6 +1,3 @@
-# threat-actor-profiler
-ML-enhanced OSINT tool for threat intelligence analysis using MITRE ATT&amp;CK framework
-
 # Threat Actor Profile Aggregator
 
 ML-enhanced OSINT tool for automated threat intelligence analysis using the MITRE ATT&CK framework.
@@ -55,3 +52,204 @@ Generates intelligence products including:
 
 ### Setup
 ```bash
+# Clone the repository
+git clone https://github.com/YOUR-USERNAME/threat-actor-profiler.git
+cd threat-actor-profiler
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create output directory
+mkdir outputs
+```
+
+### Dependencies
+```
+pandas==2.1.0
+numpy==1.24.3
+matplotlib==3.7.2
+seaborn==0.12.2
+scikit-learn==1.3.0
+scipy==1.11.2
+requests==2.31.0
+jupyter==1.0.0
+```
+
+---
+
+## Usage
+
+### Quick Start (Python Script)
+```python
+from threat_profiler import ThreatActorProfiler
+
+# Initialize profiler
+profiler = ThreatActorProfiler()
+
+# Download MITRE ATT&CK data
+profiler.fetch_mitre_data()
+
+# Extract all threat groups
+groups = profiler.extract_threat_groups()
+print(f"Loaded {len(groups)} threat actors")
+
+# Profile a specific APT group
+profile = profiler.generate_profile("APT29")
+
+# Find similar threat actors
+profiler.find_similar_groups("APT29", top_n=10)
+
+# Generate visualizations
+profiler.plot_ttp_distribution("APT29")
+profiler.plot_threat_landscape(n_clusters=6)
+profiler.plot_similarity_heatmap(top_n=20)
+```
+
+### Full Analysis (Jupyter Notebook)
+
+For comprehensive analysis with detailed explanations and visualizations, open `analysis.ipynb` in Jupyter:
+```bash
+jupyter notebook analysis.ipynb
+```
+
+The notebook includes:
+- Complete exploratory data analysis
+- Individual threat actor profiling
+- ML clustering analysis
+- Nation-state operational comparison
+- Intelligence assessment summary
+
+---
+
+## Sample Output
+
+### Threat Landscape Visualization
+![Threat Actor Landscape](screenshots/threat_landscape.png)
+*PCA-based 2D map showing 150+ APT groups clustered by operational similarity*
+
+### Hierarchical Clustering
+![Dendrogram](screenshots/dendrogram.png)
+*Hierarchical relationships between threat actors based on TTP patterns*
+
+### Individual Threat Profiles
+![APT34 Distribution](screenshots/apt34_distribution.png)
+*TTP distribution analysis for APT34 (Iranian actor)*
+
+---
+
+## Key Findings
+
+### Analytical Insights
+
+**Nation-State Operational Patterns:**
+- **Russia**: Favors PowerShell, registry persistence, and living-off-the-land techniques
+- **China**: Prioritizes credential theft (LSASS dumps, Pass-the-Hash) and lateral movement
+- **North Korea**: Emphasizes spearphishing, command-line operations, and tool deployment
+- **Iran**: Focuses on credential harvesting from files and caches with data archival
+
+**Threat Actor Families:**
+ML clustering reveals 5-7 distinct operational families based on shared TTP patterns, enabling more effective threat hunting across related groups.
+
+**Attribution Value:**
+Cosine similarity scoring provides quantifiable metrics (e.g., "Unknown attack shows 87% similarity to APT29 patterns") for data-driven attribution analysis.
+
+---
+
+## Use Cases
+
+### Threat Hunting
+Use similarity scores to guide hunting for related APT activity when investigating unknown intrusions.
+
+### Detection Engineering
+Build detection rules covering entire threat actor families rather than individual groups.
+
+### Risk Assessment
+Understand which threat actors target specific sectors and their operational sophistication levels.
+
+### Strategic Intelligence
+Track evolution of threat actor capabilities and emerging TTP adoption patterns.
+
+---
+## Future Enhancements (Phase 2)
+
+- **CISA Integration**: Add government threat advisories and vulnerability intelligence
+- **Temporal Analysis**: Track TTP evolution over time to identify emerging techniques
+- **News Feed Integration**: Incorporate recent threat actor activity from security blogs
+- **Malware Mapping**: Link threat actors to specific malware families
+- **Predictive Modeling**: Build models to predict emerging technique adoption
+
+---
+
+## Technical Details
+
+### Machine Learning Approach
+
+**Feature Engineering:**
+- Binary encoding of TTP relationships (group uses technique = 1, doesn't use = 0)
+- Sparse matrix representation (150 groups × 600+ techniques)
+
+**Similarity Metrics:**
+- Cosine similarity for directional pattern matching
+- Handles varying technique counts across groups
+- Produces normalized scores (0-1 scale)
+
+**Clustering Algorithms:**
+- K-Means for operational family identification
+- DBSCAN for density-based clustering
+- Hierarchical clustering for relationship trees
+
+**Dimensionality Reduction:**
+- PCA for 2D visualization of high-dimensional TTP space
+- Preserves ~26% of variance in first two components
+
+---
+
+## Data Source
+
+This project uses publicly available threat intelligence from:
+- **MITRE ATT&CK Framework**: https://attack.mitre.org/
+- **MITRE CTI Repository**: https://github.com/mitre/cti
+
+All data is sourced from MITRE's open CTI repository and is used in accordance with their terms of use.
+
+---
+
+## Contributing
+
+This is a portfolio project, but suggestions and feedback are welcome! Feel free to:
+- Open an issue for bugs or feature requests
+- Fork the repository for your own analysis
+- Share interesting findings or use cases
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## Author
+
+**Edison Chalas**  
+Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
+Northeastern University
+
+
+**Certifications:** CompTIA Security+ 
+
+---
+
+## Acknowledgments
+
+- **MITRE Corporation** for maintaining the ATT&CK framework and public CTI repository
+- **Northeastern University** for supporting experiential learning opportunities
+- **Open-source community** for the excellent Python libraries (pandas, scikit-learn, matplotlib)
+
+---
+
+## Disclaimer
+
+This tool is designed for educational and defensive cybersecurity purposes. It analyzes publicly available threat intelligence to support security operations, threat hunting, and risk assessment activities. The author is not responsible for any misuse of this tool.
+
+---
