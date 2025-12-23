@@ -180,15 +180,14 @@ All data is sourced from MITRE's open CTI repository and is used in accordance w
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
-
 ## Author
 
 **Edison Chalas**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
-Northeastern University
-**Certifications:** 
+Northeastern University | Expected 2027
 
-CompTIA Security+ | Exp: 2028
+**Certifications:** CompTIA Security+ | Valid through July 2028
+
 ---
 
 ## Acknowledgments
