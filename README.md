@@ -53,7 +53,7 @@ Generates intelligence products including:
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR-USERNAME/threat-actor-profiler.git
+git clone https://github.com/Edi-San24/threat-actor-profiler.git
 cd threat-actor-profiler
 
 # Install dependencies
