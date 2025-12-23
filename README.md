@@ -185,10 +185,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Edison Chalas**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
-Northeastern University | Expected 2027
-
+Northeastern University
 **Certifications:** 
-CompTIA Security+ | Valid through July 2028
+
+CompTIA Security+ | Exp: 2028
 ---
 
 ## Acknowledgments
