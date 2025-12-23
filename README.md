@@ -107,9 +107,9 @@ profiler.plot_similarity_heatmap(top_n=20)
 
 ### Full Analysis (Jupyter Notebook)
 
-For comprehensive analysis with detailed explanations and visualizations, open `analysis.ipynb` in Jupyter:
+For comprehensive analysis with detailed explanations and visualizations, open `osint_profiler.ipynb` in Jupyter:
 ```bash
-jupyter notebook analysis.ipynb
+jupyter notebook osint_profiler.ipynb
 ```
 
 The notebook includes:
@@ -118,22 +118,6 @@ The notebook includes:
 - ML clustering analysis
 - Nation-state operational comparison
 - Intelligence assessment summary
-
----
-
-## Sample Output
-
-### Threat Landscape Visualization
-![Threat Actor Landscape](screenshots/threat_landscape.png)
-*PCA-based 2D map showing 150+ APT groups clustered by operational similarity*
-
-### Hierarchical Clustering
-![Dendrogram](screenshots/dendrogram.png)
-*Hierarchical relationships between threat actors based on TTP patterns*
-
-### Individual Threat Profiles
-![APT34 Distribution](screenshots/apt34_distribution.png)
-*TTP distribution analysis for APT34 (Iranian actor)*
 
 ---
 
@@ -170,6 +154,7 @@ Understand which threat actors target specific sectors and their operational sop
 Track evolution of threat actor capabilities and emerging TTP adoption patterns.
 
 ---
+
 ## Future Enhancements (Phase 2)
 
 - **CISA Integration**: Add government threat advisories and vulnerability intelligence
@@ -180,30 +165,6 @@ Track evolution of threat actor capabilities and emerging TTP adoption patterns.
 
 ---
 
-## Technical Details
-
-### Machine Learning Approach
-
-**Feature Engineering:**
-- Binary encoding of TTP relationships (group uses technique = 1, doesn't use = 0)
-- Sparse matrix representation (150 groups × 600+ techniques)
-
-**Similarity Metrics:**
-- Cosine similarity for directional pattern matching
-- Handles varying technique counts across groups
-- Produces normalized scores (0-1 scale)
-
-**Clustering Algorithms:**
-- K-Means for operational family identification
-- DBSCAN for density-based clustering
-- Hierarchical clustering for relationship trees
-
-**Dimensionality Reduction:**
-- PCA for 2D visualization of high-dimensional TTP space
-- Preserves ~26% of variance in first two components
-
----
-
 ## Data Source
 
 This project uses publicly available threat intelligence from:
@@ -211,15 +172,6 @@ This project uses publicly available threat intelligence from:
 - **MITRE CTI Repository**: https://github.com/mitre/cti
 
 All data is sourced from MITRE's open CTI repository and is used in accordance with their terms of use.
-
----
-
-## Contributing
-
-This is a portfolio project, but suggestions and feedback are welcome! Feel free to:
-- Open an issue for bugs or feature requests
-- Fork the repository for your own analysis
-- Share interesting findings or use cases
 
 ---
 
@@ -234,7 +186,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Edison Chalas**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
 Northeastern University
-
 
 **Certifications:** CompTIA Security+ 
 
