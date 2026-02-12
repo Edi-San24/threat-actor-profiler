@@ -16,6 +16,7 @@ The Threat Actor Profile Aggregator is an automated intelligence collection and 
 
 - **Automated Data Collection**: Extracts structured threat intelligence on 150+ APT groups from MITRE ATT&CK's public CTI repository
 - **ML-Enhanced Analysis**: Implements cosine similarity and K-Means clustering to identify operational relationships between threat actors
+- **Arsenal Profiling**: Maps 600+ malware families and tools to specific threat actors, revealing operational capabilities and infrastructure sharing
 - **Attribution Support**: Generates similarity scores to assist in threat attribution when analyzing unknown attacks
 - **Intelligence Visualization**: Creates professional-grade visualizations including PCA threat landscapes, hierarchical dendrograms, and TTP heatmaps
 - **Exportable Reports**: Produces CSV outputs and intelligence profiles suitable for threat hunting and detection engineering
@@ -41,6 +42,13 @@ Generates intelligence products including:
 - **PCA Threat Landscape**: 2D map showing all threat actors clustered by similarity
 - **Hierarchical Dendrogram**: Family tree revealing group relationships
 - **TTP Distribution Charts**: Bar charts showing tactical focus areas per group
+
+### 6. Arsenal Analysis (Phase 2)
+Maps malware families and tools to threat actors, revealing:
+- Custom malware development indicating R&D investment
+- Commodity tool usage showing operational pragmatism
+- Infrastructure sharing patterns between groups
+- Arsenal sophistication metrics (malware-to-tool ratios)
 
 ---
 
@@ -96,6 +104,10 @@ print(f"Loaded {len(groups)} threat actors")
 # Profile a specific APT group
 profile = profiler.generate_profile("APT29")
 
+# Phase 2: Get arsenal analysis
+arsenal = profiler.get_group_arsenal("APT29")
+enhanced = profiler.generate_enhanced_profile("APT29")
+
 # Find similar threat actors
 profiler.find_similar_groups("APT29", top_n=10)
 
@@ -103,6 +115,7 @@ profiler.find_similar_groups("APT29", top_n=10)
 profiler.plot_ttp_distribution("APT29")
 profiler.plot_threat_landscape(n_clusters=6)
 profiler.plot_similarity_heatmap(top_n=20)
+profiler.plot_arsenal_comparison(["APT29", "APT28", "Lazarus Group"])
 ```
 
 ### Full Analysis (Jupyter Notebook)
@@ -116,6 +129,7 @@ The notebook includes:
 - Complete exploratory data analysis
 - Individual threat actor profiling
 - ML clustering analysis
+- Arsenal and malware/tool mapping (Phase 2)
 - Nation-state operational comparison
 - Intelligence assessment summary
 
@@ -131,8 +145,14 @@ The notebook includes:
 - **North Korea**: Emphasizes spearphishing, command-line operations, and tool deployment
 - **Iran**: Focuses on credential harvesting from files and caches with data archival
 
+**Arsenal Sophistication (Phase 2):**
+- **APT29** (Russia): 49-item arsenal (34 custom malware + 15 tools) - most extensive documented toolkit
+- **Lazarus Group** (North Korea): 26-item arsenal with 85% custom malware - heavy R&D investment despite resource constraints
+- **APT41** (China): 32-item balanced arsenal - pragmatic mix of custom and commodity capabilities
+- **Shared Tools**: Mimikatz (52 groups), Cobalt Strike (29 groups), PsExec (39 groups) indicate widespread commodity tool adoption
+
 **Threat Actor Families:**
-ML clustering reveals 5-7 distinct operational families based on shared TTP patterns, enabling more effective threat hunting across related groups.
+ML clustering reveals 6 distinct operational clusters - elite nation-state operations (Cluster 1: 33 groups with 80+ techniques) separate from general APT population (Cluster 2: 116 groups with specialized focus).
 
 **Attribution Value:**
 Cosine similarity scoring provides quantifiable metrics (e.g., "Unknown attack shows 87% similarity to APT29 patterns") for data-driven attribution analysis.
@@ -155,13 +175,13 @@ Track evolution of threat actor capabilities and emerging TTP adoption patterns.
 
 ---
 
-## Future Enhancements (Phase 2)
+## Future Enhancements (Phase 3)
 
-- **CISA Integration**: Add government threat advisories and vulnerability intelligence
-- **Temporal Analysis**: Track TTP evolution over time to identify emerging techniques
-- **News Feed Integration**: Incorporate recent threat actor activity from security blogs
-- **Malware Mapping**: Link threat actors to specific malware families
-- **Predictive Modeling**: Build models to predict emerging technique adoption
+- **Temporal Analysis**: Track TTP evolution over time using MITRE modification timestamps
+- **Sector Targeting Analysis**: Map threat actors to targeted industries using MITRE victim data
+- **Network Visualization**: Interactive graph showing malware/tool sharing relationships between groups
+- **Predictive Attribution**: Build classification models to predict threat actor from observed TTP patterns
+- **Enhanced CSV Exports**: Structured data formats with metadata headers and validation
 
 ---
 
@@ -180,9 +200,10 @@ All data is sourced from MITRE's open CTI repository and is used in accordance w
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
+
 ## Author
 
-**Edison C**  
+**Edison C. (Edi-San24)**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
 Northeastern University | Expected 2027
 
@@ -194,12 +215,10 @@ Northeastern University | Expected 2027
 
 - **MITRE Corporation** for maintaining the ATT&CK framework and public CTI repository
 - **Northeastern University** for supporting experiential learning opportunities
-- **Open-source community** for the excellent Python libraries (pandas, scikit-learn, matplotlib)
+- **Open-source community** for the Python libraries (pandas, scikit-learn, matplotlib)
 
 ---
 
 ## Disclaimer
 
 This tool is designed for educational and defensive cybersecurity purposes. It analyzes publicly available threat intelligence to support security operations, threat hunting, and risk assessment activities. The author is not responsible for any misuse of this tool.
-
----
