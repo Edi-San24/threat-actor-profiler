@@ -182,7 +182,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 ## Author
 
-**Edison Chalas**  
+**Edison C**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
 Northeastern University | Expected 2027
 
