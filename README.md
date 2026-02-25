@@ -205,7 +205,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Edison C. (Edi-San24)**  
 Graduate Student - MPS in Analytics (Applied Machine Intelligence)  
-Northeastern University | Expected 2027
+Northeastern University 
 
 **Certifications:** CompTIA Security+ | Valid through July 2028
 
